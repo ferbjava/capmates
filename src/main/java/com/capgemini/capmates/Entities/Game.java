@@ -6,7 +6,7 @@ public class Game {
 	private String gameName;
 	private int minPlayers;
 	private int maxPlayers;
-	
+
 	public Game(long id, String gameName, int minPlayers, int maxPlayers) {
 		setId(id);
 		setGameName(gameName);

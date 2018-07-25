@@ -12,7 +12,8 @@ public class Player {
 	private String lifeMotto;
 	private ArrayList<Game> playerGames;
 
-	public Player(Integer id, String firstName, String lastName, String email, String password, String lifeMotto, ArrayList<Game> playerGames) {
+	public Player(Integer id, String firstName, String lastName, String email, String password, String lifeMotto,
+			ArrayList<Game> playerGames) {
 		setId(id);
 		setFirstName(firstName);
 		setLastName(lastName);
@@ -142,6 +143,5 @@ public class Player {
 	public void addGame(Game newGame) {
 		this.playerGames.add(newGame);
 	}
-	
 
 }

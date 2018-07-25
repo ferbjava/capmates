@@ -1,6 +1,5 @@
 package com.capgemini.capmates.TO;
 
-
 public class PlayerProfileTO {
 	private Integer id;
 	private String firstName;
@@ -8,8 +7,9 @@ public class PlayerProfileTO {
 	private String email;
 	private String password;
 	private String lifeMotto;
-	
-	public PlayerProfileTO(Integer id, String firstName, String lastName, String email, String password, String lifeMotto) {
+
+	public PlayerProfileTO(Integer id, String firstName, String lastName, String email, String password,
+			String lifeMotto) {
 		setId(id);
 		setFirstName(firstName);
 		setLastName(lastName);
@@ -17,51 +17,51 @@ public class PlayerProfileTO {
 		setPassword(password);
 		setLifeMotto(lifeMotto);
 	}
-	
-	
-//	public PlayerProfileTO(PlayerProfileTO player) {
-//		setId(player.getId());
-//		setFirstName(player.getFirstName());
-//		setLastName(player.getLastName());
-//		setEmail(player.getEmail());
-//		setPassword(player.getPassword());
-//		setLifeMotto(player.getLifeMotto());
-//	}
-
 
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public String getFirstName() {
 		return firstName;
 	}
+
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
+
 	public String getLastName() {
 		return lastName;
 	}
+
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public String getLifeMotto() {
 		return lifeMotto;
 	}
+
 	public void setLifeMotto(String lifeMotto) {
 		this.lifeMotto = lifeMotto;
 	}
+
 	public String getPassword() {
 		return password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
@@ -121,11 +121,10 @@ public class PlayerProfileTO {
 		return true;
 	}
 
-
 	@Override
 	public String toString() {
 		return "PlayerProfileTO [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
 				+ ", password=" + password + ", lifeMotto=" + lifeMotto + "]";
 	}
-	
+
 }

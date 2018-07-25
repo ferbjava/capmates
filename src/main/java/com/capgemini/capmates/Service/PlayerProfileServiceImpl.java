@@ -28,15 +28,6 @@ public class PlayerProfileServiceImpl {
 
 	public PlayerProfileTO showPlayerProfile(Integer id) {
 		Player playerEntity = playersDao.getPlayerById(id);
-
-		// String firstName = playerMapper.getPlayerFirstName(playerEntity);
-		// String lastName = playerMapper.getPlayerLastName(playerEntity);
-		// String email = playerMapper.getPlayerEmail(playerEntity);
-		// String password = playerMapper.getPlayerPassword(playerEntity);
-		// String motto = playerMapper.getPlayerMotto(playerEntity);
-		// return new PlayerProfileTO(id, firstName, lastName, email, password,
-		// motto);
-
 		return playerMapper.showPlayerProfile(playerEntity);
 	}
 

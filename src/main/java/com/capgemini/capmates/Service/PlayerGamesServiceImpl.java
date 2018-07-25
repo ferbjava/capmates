@@ -36,21 +36,27 @@ public class PlayerGamesServiceImpl {
 	}
 
 	public void addGameToUserCollection(Integer playerId, GameTO newGame) {
-		String gameName=newGame.getGameName();
-		int minPlayers=newGame.getMinPlayers();
-		int maxPlayers=newGame.getMaxPlayers();
-		Game recentGame=gamesDao.getOrAddGame(gameName, minPlayers, maxPlayers);
+		String gameName = newGame.getGameName();
+		int minPlayers = newGame.getMinPlayers();
+		int maxPlayers = newGame.getMaxPlayers();
+		Game recentGame = gamesDao.getOrAddGame(gameName, minPlayers, maxPlayers);
 		playerDao.addPlayerGame(playerId, recentGame);
 	}
-	
-	public HashSet<Game> showGamesInRepo(){
-		HashSet<Game>gamesInRepo=new HashSet<>();
+
+	public HashSet<Game> showGamesInRepo() {
+		HashSet<Game> gamesInRepo = new HashSet<>();
 		gamesInRepo.addAll(gamesDao.showGamesInRepo());
 		return gamesInRepo;
 	}
-	
-	public void removePlayerGame(String gameName){
-		
+
+	public void removePlayerGame(Integer playerId, Game gameToRemove) {
+		Player playerEntity = playerDao.getPlayerById(playerId);
+		ArrayList<Game> userGames = gamesMapper.showUserGames(playerEntity);
+		for (Game testGame : userGames) {
+			if (gameToRemove.equals(testGame)) {
+				playerDao.removePlayerGame(playerId, gameToRemove);
+			}
+		}
 	}
 
 }

@@ -16,7 +16,7 @@ public class PlayerProfileMapper {
 		String motto = playerEntity.getLifeMotto();
 		return new PlayerProfileTO(id, firstName, lastName, email, password, motto);
 	}
-	
+
 	public String getPlayerFirstName(Player playerEntity) {
 		return playerEntity.getFirstName();
 	}
