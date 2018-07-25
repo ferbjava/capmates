@@ -1,12 +1,11 @@
 package com.capgemini.capmates.Service;
 
 import java.util.Collection;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.capgemini.capmates.DAO.PlayerDao;
-import com.capgemini.capmates.Entities.Game;
 import com.capgemini.capmates.Entities.Player;
 import com.capgemini.capmates.Mappers.PlayerProfileMapper;
 import com.capgemini.capmates.TO.PlayerProfileTO;
@@ -90,9 +89,8 @@ public class PlayerProfileServiceImpl {
 		playerMapper.setPlayerLifeMotto(playerEntity, lifeMotto);
 	}
 	
-	public List<Game> showPlayerGames(Integer id){
-		Player playerEntity = playersDao.getPlayerById(id);
-		return playerMapper.showUserGames(playerEntity);
+	public void initDao(){
+		playersDao.init();
 	}
 	
 }

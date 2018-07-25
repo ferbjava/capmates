@@ -1,10 +1,6 @@
 package com.capgemini.capmates.Mappers;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.stereotype.Component;
-import com.capgemini.capmates.Entities.Game;
 import com.capgemini.capmates.Entities.Player;
 import com.capgemini.capmates.TO.PlayerProfileTO;
 
@@ -59,13 +55,6 @@ public class PlayerProfileMapper {
 
 	public void setPlayerLifeMotto(Player playerEntity, String lifeMotto) {
 		playerEntity.setLifeMotto(lifeMotto);
-	}
-	
-	public List<Game> showUserGames(Player playerEntity){
-//		List<Game> userGames=playerEntity.getPlayerGames();
-		List<Game>userGames=new ArrayList<>();
-		userGames.addAll(playerEntity.getPlayerGames());
-		return userGames;
 	}
 
 }

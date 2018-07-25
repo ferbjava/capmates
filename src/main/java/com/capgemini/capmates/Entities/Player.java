@@ -36,7 +36,6 @@ public class Player {
 		return result;
 	}
 
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -83,7 +82,6 @@ public class Player {
 			return false;
 		return true;
 	}
-
 
 	public Integer getId() {
 		return id;
@@ -140,7 +138,10 @@ public class Player {
 	public void setPlayerGames(ArrayList<Game> playerGames) {
 		this.playerGames = playerGames;
 	}
-	
+
+	public void addGame(Game newGame) {
+		this.playerGames.add(newGame);
+	}
 	
 
 }

@@ -1,5 +1,6 @@
 package com.capgemini.capmates.TO;
 
+
 public class PlayerProfileTO {
 	private Integer id;
 	private String firstName;
@@ -118,6 +119,13 @@ public class PlayerProfileTO {
 		} else if (!password.equals(other.password))
 			return false;
 		return true;
+	}
+
+
+	@Override
+	public String toString() {
+		return "PlayerProfileTO [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
+				+ ", password=" + password + ", lifeMotto=" + lifeMotto + "]";
 	}
 	
 }
