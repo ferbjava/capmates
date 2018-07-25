@@ -8,10 +8,10 @@ public class ConsoleTests {
 
 	public static void main(String[] args) {
 		List<Game>games=new ArrayList<Game>();
-		games.add(new Game("pierwsza", 2,4));
-		games.add(new Game("druga", 2,4));
-		games.add(new Game("trzecia", 2,4));
-		games.add(new Game("czwarta", 2,4));
+		games.add(new Game(1, "pierwsza", 2,4));
+		games.add(new Game(2, "druga", 2,4));
+		games.add(new Game(3, "trzecia", 2,4));
+		games.add(new Game(4, "czwarta", 2,4));
 		
 		List<Game>gamesCopy=games;
 		

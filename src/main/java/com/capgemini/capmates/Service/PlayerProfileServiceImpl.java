@@ -28,69 +28,70 @@ public class PlayerProfileServiceImpl {
 
 	public PlayerProfileTO showPlayerProfile(Integer id) {
 		Player playerEntity = playersDao.getPlayerById(id);
-		
-//		String firstName = playerMapper.getPlayerFirstName(playerEntity);
-//		String lastName = playerMapper.getPlayerLastName(playerEntity);
-//		String email = playerMapper.getPlayerEmail(playerEntity);
-//		String password = playerMapper.getPlayerPassword(playerEntity);
-//		String motto = playerMapper.getPlayerMotto(playerEntity);
-//		return new PlayerProfileTO(id, firstName, lastName, email, password, motto);
-		
+
+		// String firstName = playerMapper.getPlayerFirstName(playerEntity);
+		// String lastName = playerMapper.getPlayerLastName(playerEntity);
+		// String email = playerMapper.getPlayerEmail(playerEntity);
+		// String password = playerMapper.getPlayerPassword(playerEntity);
+		// String motto = playerMapper.getPlayerMotto(playerEntity);
+		// return new PlayerProfileTO(id, firstName, lastName, email, password,
+		// motto);
+
 		return playerMapper.showPlayerProfile(playerEntity);
 	}
-	
-	public String getPlayerFirstName(Integer id){
+
+	public String getPlayerFirstName(Integer id) {
 		Player playerEntity = playersDao.getPlayerById(id);
 		return playerMapper.getPlayerFirstName(playerEntity);
 	}
-	
-	public String getPlayerLastName(Integer id){
+
+	public String getPlayerLastName(Integer id) {
 		Player playerEntity = playersDao.getPlayerById(id);
 		return playerMapper.getPlayerLastName(playerEntity);
 	}
-	
-	public String getPlayerEmail(Integer id){
+
+	public String getPlayerEmail(Integer id) {
 		Player playerEntity = playersDao.getPlayerById(id);
 		return playerMapper.getPlayerEmail(playerEntity);
 	}
-	
-	public String getPlayerPassword(Integer id){
+
+	public String getPlayerPassword(Integer id) {
 		Player playerEntity = playersDao.getPlayerById(id);
 		return playerMapper.getPlayerPassword(playerEntity);
 	}
-	
-	public String getPlayerLifeMotto(Integer id){
+
+	public String getPlayerLifeMotto(Integer id) {
 		Player playerEntity = playersDao.getPlayerById(id);
 		return playerMapper.getPlayerMotto(playerEntity);
 	}
-	
-	public void setPlayerFirstName(Integer id, String firstName){
+
+	public void setPlayerFirstName(Integer id, String firstName) {
 		Player playerEntity = playersDao.getPlayerById(id);
 		playerMapper.setPlayerFirstName(playerEntity, firstName);
 	}
-	
-	public void setPlayerLastName(Integer id, String lastName){
+
+	public void setPlayerLastName(Integer id, String lastName) {
 		Player playerEntity = playersDao.getPlayerById(id);
 		playerMapper.setPlayerLastName(playerEntity, lastName);
 	}
-	
-	public void setPlayerEmail(Integer id, String email){
+
+	public void setPlayerEmail(Integer id, String email) {
 		Player playerEntity = playersDao.getPlayerById(id);
 		playerMapper.setPlayerEmail(playerEntity, email);
 	}
-	
-	public void setPlayerPassword(Integer id, String password){
+
+	public void setPlayerPassword(Integer id, String password) {
 		Player playerEntity = playersDao.getPlayerById(id);
 		playerMapper.setPlayerPassword(playerEntity, password);
 	}
-	
-	public void setPlayerLifeMotto(Integer id, String lifeMotto){
+
+	public void setPlayerLifeMotto(Integer id, String lifeMotto) {
 		Player playerEntity = playersDao.getPlayerById(id);
 		playerMapper.setPlayerLifeMotto(playerEntity, lifeMotto);
 	}
-	
-	public void initDao(){
+
+	public void initDao() {
 		playersDao.init();
 	}
-	
+
 }

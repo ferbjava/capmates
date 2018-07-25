@@ -1,6 +1,7 @@
 package com.capgemini.capmates.Service;
 
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.HashSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,24 +18,39 @@ public class PlayerGamesServiceImpl {
 	private PlayerDao playerDao;
 	private GamesDao gamesDao;
 	private GamesMapper gamesMapper;
-	
+
 	@Autowired
 	public PlayerGamesServiceImpl(PlayerDao playerDao, GamesDao gamesDao, GamesMapper gamesMapper) {
-		this.playerDao=playerDao;
-		this.gamesDao=gamesDao;
-		this.gamesMapper=gamesMapper;
+		this.playerDao = playerDao;
+		this.gamesDao = gamesDao;
+		this.gamesMapper = gamesMapper;
 	}
-	
-	public Collection<Game> showPlayerGames(Integer id){
-		Player playerEntity=playerDao.getPlayerById(id);
+
+	public void initDao() {
+		gamesDao.init();
+	}
+
+	public ArrayList<Game> showPlayerGames(Integer playerId) {
+		Player playerEntity = playerDao.getPlayerById(playerId);
 		return gamesMapper.showUserGames(playerEntity);
 	}
-	
-	public void addGameToCollection(Integer id, GameTO newGame){
-		if(!gamesDao.contain(gamesMapper.getGame(newGame))){
-			gamesDao.addGameToCollection(gamesMapper.getGame(newGame));
-		}
-		playerDao.addPlayerGame(id, gamesMapper.getGame(newGame));	
+
+	public void addGameToUserCollection(Integer playerId, GameTO newGame) {
+		String gameName=newGame.getGameName();
+		int minPlayers=newGame.getMinPlayers();
+		int maxPlayers=newGame.getMaxPlayers();
+		Game recentGame=gamesDao.getOrAddGame(gameName, minPlayers, maxPlayers);
+		playerDao.addPlayerGame(playerId, recentGame);
 	}
 	
+	public HashSet<Game> showGamesInRepo(){
+		HashSet<Game>gamesInRepo=new HashSet<>();
+		gamesInRepo.addAll(gamesDao.showGamesInRepo());
+		return gamesInRepo;
+	}
+	
+	public void removePlayerGame(String gameName){
+		
+	}
+
 }
