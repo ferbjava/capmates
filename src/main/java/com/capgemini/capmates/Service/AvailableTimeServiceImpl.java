@@ -94,7 +94,7 @@ public class AvailableTimeServiceImpl {
 			commonStop = playerTime.getStop();
 		}
 
-		long thisPeriod = ChronoUnit.MINUTES.between(commonStop, commonStart);
+		long thisPeriod = ChronoUnit.MINUTES.between(commonStart, commonStop);
 		if (commonStop.isAfter(commonStart) && thisPeriod >= minPeriod) {
 			commonPeriod.add(commonStart);
 			commonPeriod.add(commonStop);

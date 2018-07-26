@@ -13,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.capgemini.capmates.DAO.PlayerDao;
+import com.capgemini.capmates.Entities.Challenge;
 import com.capgemini.capmates.Entities.Game;
 import com.capgemini.capmates.Entities.Player;
 import com.capgemini.capmates.Service.AvailableTimeServiceImpl;
@@ -309,7 +310,7 @@ public class MyTests {
 		assertEquals(NEW_START, playerTime.get(UPDATED_TIME_ID).getStart());
 		assertEquals(NEW_STOP, playerTime.get(UPDATED_TIME_ID).getStop());
 	}
-
+	
 	@Test
 	public void shouldRemoveExistingTime() {
 		// given
@@ -326,21 +327,11 @@ public class MyTests {
 		AvailTimeTO timeToRemove=new AvailTimeTO(playerId, startToRemove, stopToRemove, "Inactive", EXPECTED_STATUS);
 		ArrayList<AvailTimeTO>playerTime= availTimesService.showPlayerTimes(playerId);
 		
-//		for(AvailTimeTO tempTime:playerTime){
-//			System.out.println(tempTime.toString());
-//		}
-		
 		int oldPlayerTimes=playerTime.size();
 		
 		boolean isRemoved=false;
 		isRemoved=availTimesService.removeAvailTime(playerId, timeToRemove);;
 		playerTime=availTimesService.showPlayerTimes(playerId);
-		
-//		for(AvailTimeTO tempTime:playerTime){
-//			System.out.println(tempTime.toString());
-//		}
-		
-//		System.out.println(playerTime.contains(timeToRemove));
 		
 		int newPlayerTimes=playerTime.size();
 
@@ -349,6 +340,23 @@ public class MyTests {
 		assertEquals(EXPECTED_NEW_PLAYER_TIMES, newPlayerTimes);
 		assertTrue(isRemoved);
 		assertTrue(playerTime.contains(timeToRemove));
+	}
+
+	@Test
+	public void shouldCreateChallenges() {
+		// given
+		availTimesService.init();
+
+		Integer PLAYER_ID = 2;
+		int MINIMUM_PERIOD=60;
+		int EXPECTED_CHALLENGES=3;
+		
+		// when
+		ArrayList<Challenge>createdChallenges=new ArrayList<Challenge>();
+		createdChallenges.addAll(availTimesService.createChallenges(PLAYER_ID, MINIMUM_PERIOD));
+
+		// then
+		assertEquals(EXPECTED_CHALLENGES, createdChallenges.size());
 	}
 
 }
