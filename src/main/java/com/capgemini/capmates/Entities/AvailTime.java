@@ -3,6 +3,7 @@ package com.capgemini.capmates.Entities;
 import java.time.LocalTime;
 
 public class AvailTime {
+	private long availTimeId;
 	private int playerId;
 	private LocalTime start;
 	private LocalTime stop;
@@ -10,7 +11,8 @@ public class AvailTime {
 	private String comment;
 	
 	
-	public AvailTime(int playerId, LocalTime start, LocalTime stop, String status, String comment) {
+	public AvailTime(long id, Integer playerId, LocalTime start, LocalTime stop, String status, String comment) {
+		setAvailTimeId(id);
 		setPlayerId(playerId);
 		setStart(start);
 		setStop(stop);
@@ -49,10 +51,19 @@ public class AvailTime {
 		this.comment = comment;
 	}
 
+	public long getAvailTimeId() {
+		return availTimeId;
+	}
+
+	public void setAvailTimeId(long availTimeId) {
+		this.availTimeId = availTimeId;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + (int) (availTimeId ^ (availTimeId >>> 32));
 		result = prime * result + ((comment == null) ? 0 : comment.hashCode());
 		result = prime * result + playerId;
 		result = prime * result + ((start == null) ? 0 : start.hashCode());
@@ -70,6 +81,8 @@ public class AvailTime {
 		if (getClass() != obj.getClass())
 			return false;
 		AvailTime other = (AvailTime) obj;
+		if (availTimeId != other.availTimeId)
+			return false;
 		if (comment == null) {
 			if (other.comment != null)
 				return false;

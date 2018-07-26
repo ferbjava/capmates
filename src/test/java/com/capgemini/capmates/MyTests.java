@@ -14,8 +14,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.capgemini.capmates.DAO.PlayerDao;
 import com.capgemini.capmates.Entities.Game;
 import com.capgemini.capmates.Entities.Player;
+import com.capgemini.capmates.Service.AvailableTimeServiceImpl;
 import com.capgemini.capmates.Service.PlayerGamesServiceImpl;
 import com.capgemini.capmates.Service.PlayerProfileServiceImpl;
+import com.capgemini.capmates.TO.AvailTimeTO;
 import com.capgemini.capmates.TO.GameTO;
 import com.capgemini.capmates.TO.PlayerProfileTO;
 
@@ -31,6 +33,9 @@ public class MyTests {
 
 	@Autowired
 	private PlayerGamesServiceImpl gamesService;
+	
+	@Autowired
+	private AvailableTimeServiceImpl availTimesService;
 
 	@Test
 	public void contextLoads() {
@@ -233,6 +238,22 @@ public class MyTests {
 		// then
 		assertEquals(EXPECTED_PLAYER_GAMES, gamesService.showPlayerGames(playerId).size());
 		assertEquals(EXPECTED_GAMES_IN_REPOSITORY, gamesService.showGamesInRepo().size());
+
+	}
+
+	@Test
+	public void shouldReturnNumberOfPlayerTimes() {
+		// given
+		availTimesService.init();
+
+		Integer playerId = 1;
+		int EXPECTED_PLAYER_TIMES =2;
+
+		// when
+		ArrayList<AvailTimeTO>playerTime= availTimesService.showPlayerTimes(playerId);
+
+		// then
+		assertEquals(EXPECTED_PLAYER_TIMES, playerTime.size());
 
 	}
 
