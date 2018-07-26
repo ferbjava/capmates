@@ -29,7 +29,7 @@ public class AvailableTimeServiceImpl {
 
 	public void newAvailTime(AvailTimeTO availTimeTO) {
 		long newAvailTimeId = availTimesDao.availTimesNextId();
-		availTimesDao.addNewAvailTime(availTimesMapper.tOmappedToEntity(newAvailTimeId, availTimeTO));
+		availTimesDao.addNewAvailTime(availTimesMapper.toToEntity(newAvailTimeId, availTimeTO));
 	}
 
 	public ArrayList<AvailTimeTO> showPlayerTimes(Integer playerId) {

@@ -51,7 +51,7 @@ public class AvailTimesDao {
 		ArrayList<AvailTimeTO> playerTimes = new ArrayList<AvailTimeTO>();
 		for (AvailTime time : availTimes) {
 			if (time.getPlayerId() == playerId) {
-				AvailTimeTO timeTO = timesMapper.entityMappedToTO(time);
+				AvailTimeTO timeTO = timesMapper.entityToTO(time);
 				playerTimes.add(timeTO);
 			}
 		}
@@ -93,7 +93,7 @@ public class AvailTimesDao {
 	public ArrayList<AvailTimeTO> showAllTimes() {
 		ArrayList<AvailTimeTO> timeListTO = new ArrayList<AvailTimeTO>();
 		for (AvailTime tempTime : availTimes) {
-			timeListTO.add(timesMapper.entityMappedToTO(tempTime));
+			timeListTO.add(timesMapper.entityToTO(tempTime));
 		}
 		return timeListTO;
 	}

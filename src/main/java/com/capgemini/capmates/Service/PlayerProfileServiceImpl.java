@@ -1,7 +1,5 @@
 package com.capgemini.capmates.Service;
 
-import java.util.Collection;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,13 +20,9 @@ public class PlayerProfileServiceImpl {
 		this.playersDao = playersDao;
 	}
 
-	public Collection<Player> getAllPlayers() {
-		return playersDao.getAllPlayers();
-	}
-
 	public PlayerProfileTO showPlayerProfile(Integer id) {
 		Player playerEntity = playersDao.getPlayerById(id);
-		return playerMapper.showPlayerProfile(playerEntity);
+		return playerMapper.entityToTO(playerEntity);
 	}
 
 	public String getPlayerFirstName(Integer id) {

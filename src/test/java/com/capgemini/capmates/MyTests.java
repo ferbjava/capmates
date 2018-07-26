@@ -19,6 +19,7 @@ import com.capgemini.capmates.Entities.Player;
 import com.capgemini.capmates.Service.AvailableTimeServiceImpl;
 import com.capgemini.capmates.Service.PlayerGamesServiceImpl;
 import com.capgemini.capmates.Service.PlayerProfileServiceImpl;
+import com.capgemini.capmates.Service.PlayerStatsImpl;
 import com.capgemini.capmates.TO.AvailTimeTO;
 import com.capgemini.capmates.TO.GameTO;
 import com.capgemini.capmates.TO.PlayerProfileTO;
@@ -38,6 +39,9 @@ public class MyTests {
 
 	@Autowired
 	private AvailableTimeServiceImpl availTimesService;
+
+	@Autowired
+	private PlayerStatsImpl playerStats;
 
 	@Test
 	public void contextLoads() {
@@ -376,6 +380,36 @@ public class MyTests {
 
 		// then
 		assertEquals(EXPECTED_CHALLENGES, createdChallenges.size());
+	}
+
+	@Test
+	public void shouldReturnNumberOfPlayers() {
+		// given
+		playerStats.init();
+
+		int EXPECTED_PLAYER_NUMBER = 3;
+
+		// when
+		int playersNumber = playerStats.showPlayersId().size();
+
+		// then
+		assertEquals(EXPECTED_PLAYER_NUMBER, playersNumber);
+	}
+
+	@Test
+	public void shouldReturnNumberOfGamePlayes() {
+		// given
+		playerStats.init();
+
+		int EXPECTED_PLAYER_GAMEPLAYS = 5;
+		long playerId=1;
+
+		// when
+		int playerGameplays=playerStats.showPlayerHistory(playerId).size();
+//		int playerGameplays=playerStats.showAllGames(playerId).size();
+
+		// then
+		assertEquals(EXPECTED_PLAYER_GAMEPLAYS, playerGameplays);
 	}
 
 }

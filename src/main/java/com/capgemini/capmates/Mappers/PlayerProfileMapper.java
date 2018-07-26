@@ -7,7 +7,7 @@ import com.capgemini.capmates.TO.PlayerProfileTO;
 @Component
 public class PlayerProfileMapper {
 
-	public PlayerProfileTO showPlayerProfile(Player playerEntity) {
+	public PlayerProfileTO entityToTO(Player playerEntity) {
 		int id = playerEntity.getId();
 		String firstName = playerEntity.getFirstName();
 		String lastName = playerEntity.getLastName();

@@ -9,12 +9,12 @@ import com.capgemini.capmates.TO.AvailTimeTO;
 @Component
 public class AvailTimesMapper {
 
-	public AvailTime fieldsMappedToNewEntity(long availTimeId, int playerId, LocalTime start, LocalTime stop) {
+	public AvailTime fieldsToNewEntity(long availTimeId, int playerId, LocalTime start, LocalTime stop) {
 		AvailTime newAvailTime = new AvailTime(availTimeId, playerId, start, stop, "Active", "");
 		return newAvailTime;
 	}
 
-	public AvailTime tOmappedToEntity(long id, AvailTimeTO availTimeTO) {
+	public AvailTime toToEntity(long id, AvailTimeTO availTimeTO) {
 		Integer playerId = availTimeTO.getPlayerId();
 		LocalTime start = availTimeTO.getStart();
 		LocalTime stop = availTimeTO.getStop();
@@ -24,7 +24,7 @@ public class AvailTimesMapper {
 		return newAvailTime;
 	}
 
-	public AvailTimeTO entityMappedToTO(AvailTime time) {
+	public AvailTimeTO entityToTO(AvailTime time) {
 		int playerId = time.getPlayerId();
 		LocalTime start = time.getStart();
 		LocalTime stop = time.getStop();
