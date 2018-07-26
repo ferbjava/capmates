@@ -22,34 +22,34 @@ public class AvailableTimeServiceImpl {
 		this.availTimesDao = availTimesDao;
 		this.availTimesMapper = availTimesMapper;
 	}
-	
-	public void init(){
+
+	public void init() {
 		availTimesDao.init();
 	}
-	
-	public void newAvailTime(AvailTimeTO availTimeTO){
-		long newAvailTimeId=availTimesDao.availTimesNextId();
+
+	public void newAvailTime(AvailTimeTO availTimeTO) {
+		long newAvailTimeId = availTimesDao.availTimesNextId();
 		availTimesDao.addNewAvailTime(availTimesMapper.tOmappedToEntity(newAvailTimeId, availTimeTO));
 	}
-	
-	public ArrayList<AvailTimeTO> showPlayerTimes(Integer playerId){
+
+	public ArrayList<AvailTimeTO> showPlayerTimes(Integer playerId) {
 		return availTimesDao.showPlayerTimes(playerId);
 	}
-	
-	public void editAvailTime(AvailTimeTO oldTime, AvailTimeTO updatedTime){
+
+	public void editAvailTime(AvailTimeTO oldTime, AvailTimeTO updatedTime) {
 		availTimesDao.editAvailTime(oldTime, updatedTime);
 	}
-	
-	public boolean removeAvailTime(Integer playerId, AvailTimeTO timeToRemove){
+
+	public boolean removeAvailTime(Integer playerId, AvailTimeTO timeToRemove) {
 		return availTimesDao.removeAvailTime(playerId, timeToRemove);
 	}
-	
+
 	public ArrayList<Challenge> createChallenges(int playerId, long minPeriod) {
 
 		ArrayList<Challenge> challengeList = new ArrayList<Challenge>();
 		ArrayList<AvailTimeTO> timeList = new ArrayList<AvailTimeTO>();
 		timeList.addAll(availTimesDao.showAllTimes());
-		
+
 		for (AvailTimeTO tempTime : timeList) {
 			if (tempTime.getPlayerId() == playerId) {
 				challengeList.addAll(createChallengesForSelectedTime(tempTime, timeList, minPeriod));
@@ -60,10 +60,10 @@ public class AvailableTimeServiceImpl {
 
 	private ArrayList<Challenge> createChallengesForSelectedTime(AvailTimeTO playerTime,
 			ArrayList<AvailTimeTO> allTimes, long minPeriod) {
-		
+
 		ArrayList<Challenge> challengeList = new ArrayList<Challenge>();
 		int playerId = playerTime.getPlayerId();
-		
+
 		for (AvailTimeTO tempTime : allTimes) {
 			int enemyId = tempTime.getPlayerId();
 			if (!(playerId == enemyId)) {
@@ -77,7 +77,7 @@ public class AvailableTimeServiceImpl {
 	}
 
 	private ArrayList<LocalTime> createCommonPeriod(AvailTimeTO playerTime, AvailTimeTO tempTime, long minPeriod) {
-		
+
 		ArrayList<LocalTime> commonPeriod = new ArrayList<>();
 		LocalTime commonStart;
 		LocalTime commonStop;
@@ -102,5 +102,5 @@ public class AvailableTimeServiceImpl {
 
 		return commonPeriod;
 	}
-	
+
 }

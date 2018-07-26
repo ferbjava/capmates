@@ -91,8 +91,8 @@ public class AvailTimesDao {
 	}
 
 	public ArrayList<AvailTimeTO> showAllTimes() {
-		ArrayList<AvailTimeTO> timeListTO=new ArrayList<AvailTimeTO>();
-		for(AvailTime tempTime:availTimes){
+		ArrayList<AvailTimeTO> timeListTO = new ArrayList<AvailTimeTO>();
+		for (AvailTime tempTime : availTimes) {
 			timeListTO.add(timesMapper.entityMappedToTO(tempTime));
 		}
 		return timeListTO;

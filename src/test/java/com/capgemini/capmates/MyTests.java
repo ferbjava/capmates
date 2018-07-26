@@ -24,7 +24,7 @@ import com.capgemini.capmates.TO.GameTO;
 import com.capgemini.capmates.TO.PlayerProfileTO;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest//(classes = CapmatesApplication.class)
+@SpringBootTest // (classes = CapmatesApplication.class)
 public class MyTests {
 
 	@Autowired
@@ -35,7 +35,7 @@ public class MyTests {
 
 	@Autowired
 	private PlayerGamesServiceImpl gamesService;
-	
+
 	@Autowired
 	private AvailableTimeServiceImpl availTimesService;
 
@@ -60,7 +60,7 @@ public class MyTests {
 	public void shouldShowPlayerProfile() {
 		// given
 		playerService.initDao();
-		Integer playerId=2;
+		Integer playerId = 2;
 		String EXPECTED_FIRST_NAME = "Andrzej";
 		String EXPECTED_LAST_NAME = "Nowak";
 		String EXPECTED_MAIL = "andrzej.nowak@gmail.com";
@@ -68,7 +68,7 @@ public class MyTests {
 		String EXPECTED_LIFE_MOTTO = "Pantha rei";
 
 		// when
-		PlayerProfileTO playerProfile=playerService.showPlayerProfile(playerId);
+		PlayerProfileTO playerProfile = playerService.showPlayerProfile(playerId);
 
 		// then
 		assertEquals(EXPECTED_FIRST_NAME, playerProfile.getFirstName());
@@ -82,7 +82,7 @@ public class MyTests {
 	public void shouldShowPlayerProfileElements() {
 		// given
 		playerService.initDao();
-		int playerId=1;
+		int playerId = 1;
 		String EXPECTED_FIRST_NAME = "Jan";
 		String EXPECTED_LAST_NAME = "Kowalski";
 		String EXPECTED_MAIL = "jan.kowalski@gmail.com";
@@ -249,10 +249,10 @@ public class MyTests {
 		availTimesService.init();
 
 		Integer playerId = 1;
-		int EXPECTED_PLAYER_TIMES =2;
+		int EXPECTED_PLAYER_TIMES = 2;
 
 		// when
-		ArrayList<AvailTimeTO>playerTime= availTimesService.showPlayerTimes(playerId);
+		ArrayList<AvailTimeTO> playerTime = availTimesService.showPlayerTimes(playerId);
 
 		// then
 		assertEquals(EXPECTED_PLAYER_TIMES, playerTime.size());
@@ -265,17 +265,17 @@ public class MyTests {
 		availTimesService.init();
 
 		Integer playerId = 3;
-		int EXPECTED_OLD_PLAYER_TIMES =2;
-		int EXPECTED_NEW_PLAYER_TIMES =3;
-		AvailTimeTO newTime=new AvailTimeTO(playerId, LocalTime.of(14, 00), LocalTime.of(16, 00), "Active", "");
+		int EXPECTED_OLD_PLAYER_TIMES = 2;
+		int EXPECTED_NEW_PLAYER_TIMES = 3;
+		AvailTimeTO newTime = new AvailTimeTO(playerId, LocalTime.of(14, 00), LocalTime.of(16, 00), "Active", "");
 
 		// when
-		ArrayList<AvailTimeTO>playerTime= availTimesService.showPlayerTimes(playerId);
-		int oldPlayerTimes=playerTime.size();
-		
+		ArrayList<AvailTimeTO> playerTime = availTimesService.showPlayerTimes(playerId);
+		int oldPlayerTimes = playerTime.size();
+
 		availTimesService.newAvailTime(newTime);
-		playerTime=availTimesService.showPlayerTimes(playerId);
-		int newPlayerTimes=playerTime.size();
+		playerTime = availTimesService.showPlayerTimes(playerId);
+		int newPlayerTimes = playerTime.size();
 
 		// then
 		assertEquals(EXPECTED_OLD_PLAYER_TIMES, oldPlayerTimes);
@@ -288,21 +288,22 @@ public class MyTests {
 		availTimesService.init();
 
 		Integer playerId = 1;
-		int EXPECTED_OLD_PLAYER_TIMES =2;
-		int EXPECTED_NEW_PLAYER_TIMES =2;
-		LocalTime NEW_START= LocalTime.of(9, 00);
-		LocalTime NEW_STOP= LocalTime.of(11, 00);
-		int UPDATED_TIME_ID=1;
+		int EXPECTED_OLD_PLAYER_TIMES = 2;
+		int EXPECTED_NEW_PLAYER_TIMES = 2;
+		LocalTime NEW_START = LocalTime.of(9, 00);
+		LocalTime NEW_STOP = LocalTime.of(11, 00);
+		int UPDATED_TIME_ID = 1;
 
 		// when
-		AvailTimeTO updatedTime=new AvailTimeTO(playerId, NEW_START, NEW_STOP, "Active", "");
-		ArrayList<AvailTimeTO>playerTime= availTimesService.showPlayerTimes(playerId);
-		int oldPlayerTimes=playerTime.size();
-		AvailTimeTO oldTime= playerTime.get(UPDATED_TIME_ID);
-		
-		availTimesService.editAvailTime(oldTime, updatedTime);;
-		playerTime=availTimesService.showPlayerTimes(playerId);
-		int newPlayerTimes=playerTime.size();
+		AvailTimeTO updatedTime = new AvailTimeTO(playerId, NEW_START, NEW_STOP, "Active", "");
+		ArrayList<AvailTimeTO> playerTime = availTimesService.showPlayerTimes(playerId);
+		int oldPlayerTimes = playerTime.size();
+		AvailTimeTO oldTime = playerTime.get(UPDATED_TIME_ID);
+
+		availTimesService.editAvailTime(oldTime, updatedTime);
+		;
+		playerTime = availTimesService.showPlayerTimes(playerId);
+		int newPlayerTimes = playerTime.size();
 
 		// then
 		assertEquals(EXPECTED_OLD_PLAYER_TIMES, oldPlayerTimes);
@@ -310,30 +311,31 @@ public class MyTests {
 		assertEquals(NEW_START, playerTime.get(UPDATED_TIME_ID).getStart());
 		assertEquals(NEW_STOP, playerTime.get(UPDATED_TIME_ID).getStop());
 	}
-	
+
 	@Test
 	public void shouldRemoveExistingTime() {
 		// given
 		availTimesService.init();
 
 		Integer playerId = 1;
-		int EXPECTED_OLD_PLAYER_TIMES =2;
-		int EXPECTED_NEW_PLAYER_TIMES =2;
-		String EXPECTED_STATUS="I have to be in work";
-		LocalTime startToRemove= LocalTime.of(16, 00);
-		LocalTime stopToRemove= LocalTime.of(18, 00);
+		int EXPECTED_OLD_PLAYER_TIMES = 2;
+		int EXPECTED_NEW_PLAYER_TIMES = 2;
+		String EXPECTED_STATUS = "I have to be in work";
+		LocalTime startToRemove = LocalTime.of(16, 00);
+		LocalTime stopToRemove = LocalTime.of(18, 00);
 
 		// when
-		AvailTimeTO timeToRemove=new AvailTimeTO(playerId, startToRemove, stopToRemove, "Inactive", EXPECTED_STATUS);
-		ArrayList<AvailTimeTO>playerTime= availTimesService.showPlayerTimes(playerId);
-		
-		int oldPlayerTimes=playerTime.size();
-		
-		boolean isRemoved=false;
-		isRemoved=availTimesService.removeAvailTime(playerId, timeToRemove);;
-		playerTime=availTimesService.showPlayerTimes(playerId);
-		
-		int newPlayerTimes=playerTime.size();
+		AvailTimeTO timeToRemove = new AvailTimeTO(playerId, startToRemove, stopToRemove, "Inactive", EXPECTED_STATUS);
+		ArrayList<AvailTimeTO> playerTime = availTimesService.showPlayerTimes(playerId);
+
+		int oldPlayerTimes = playerTime.size();
+
+		boolean isRemoved = false;
+		isRemoved = availTimesService.removeAvailTime(playerId, timeToRemove);
+		;
+		playerTime = availTimesService.showPlayerTimes(playerId);
+
+		int newPlayerTimes = playerTime.size();
 
 		// then
 		assertEquals(EXPECTED_OLD_PLAYER_TIMES, oldPlayerTimes);
@@ -343,16 +345,33 @@ public class MyTests {
 	}
 
 	@Test
-	public void shouldCreateChallenges() {
+	public void shouldCreate3Challenges() {
 		// given
 		availTimesService.init();
 
 		Integer PLAYER_ID = 2;
-		int MINIMUM_PERIOD=60;
-		int EXPECTED_CHALLENGES=3;
-		
+		int MINIMUM_PERIOD = 60;
+		int EXPECTED_CHALLENGES = 3;
+
 		// when
-		ArrayList<Challenge>createdChallenges=new ArrayList<Challenge>();
+		ArrayList<Challenge> createdChallenges = new ArrayList<Challenge>();
+		createdChallenges.addAll(availTimesService.createChallenges(PLAYER_ID, MINIMUM_PERIOD));
+
+		// then
+		assertEquals(EXPECTED_CHALLENGES, createdChallenges.size());
+	}
+
+	@Test
+	public void shouldCreate4Challenges() {
+		// given
+		availTimesService.init();
+
+		Integer PLAYER_ID = 2;
+		int MINIMUM_PERIOD = 30;
+		int EXPECTED_CHALLENGES = 4;
+
+		// when
+		ArrayList<Challenge> createdChallenges = new ArrayList<Challenge>();
 		createdChallenges.addAll(availTimesService.createChallenges(PLAYER_ID, MINIMUM_PERIOD));
 
 		// then

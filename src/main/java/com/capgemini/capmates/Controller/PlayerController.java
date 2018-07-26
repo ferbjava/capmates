@@ -10,16 +10,16 @@ import com.capgemini.capmates.TO.PlayerProfileTO;
 
 @Controller
 public class PlayerController {
-	
+
 	@Autowired
 	private PlayerProfileServiceImpl playerService;
-	
-	public Collection<Player> getAllPlayers(){
+
+	public Collection<Player> getAllPlayers() {
 		return playerService.getAllPlayers();
 	}
-	
-	public PlayerProfileTO showPlayerProfile(Integer id){
+
+	public PlayerProfileTO showPlayerProfile(Integer id) {
 		return this.playerService.showPlayerProfile(id);
 	}
-	
+
 }

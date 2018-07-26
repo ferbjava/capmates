@@ -8,14 +8,14 @@ public class AvailTimeTO {
 	private LocalTime stop;
 	private String status;
 	private String comment;
-	
-	public AvailTimeTO(int playerId, LocalTime start, LocalTime stop, String status, String comment){
+
+	public AvailTimeTO(int playerId, LocalTime start, LocalTime stop, String status, String comment) {
 		setPlayerId(playerId);
 		setStart(start);
 		setStop(stop);
 		setStatus(status);
 		setComment(comment);
-}
+	}
 
 	public int getPlayerId() {
 		return playerId;
@@ -108,5 +108,5 @@ public class AvailTimeTO {
 		return "AvailTimeTO [playerId=" + playerId + ", start=" + start + ", stop=" + stop + ", status=" + status
 				+ ", comment=" + comment + "]";
 	}
-	
+
 }
