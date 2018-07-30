@@ -1,5 +1,7 @@
 package com.capgemini.capmates.Service;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,60 +21,63 @@ public class PlayerProfileServiceImpl {
 		this.playerMapper = playerMapper;
 		this.playersDao = playersDao;
 	}
+	
+	public ArrayList<PlayerProfileTO> showAllPlayersProfiles(){
+		return playersDao.getAllPlayersProfiles();
+	}
 
 	public PlayerProfileTO showPlayerProfile(Integer id) {
 		Player playerEntity = playersDao.getPlayerById(id);
 		return playerMapper.entityToTO(playerEntity);
 	}
+	
+	public void editPlayerProfile(PlayerProfileTO playerTO){
+		playersDao.editPlayerProfile(playerTO);
+	}
 
 	public String getPlayerFirstName(Integer id) {
-		Player playerEntity = playersDao.getPlayerById(id);
-		return playerMapper.getPlayerFirstName(playerEntity);
+		PlayerProfileTO playerTO=playersDao.getPlayerToById(id);
+		return playerTO.getFirstName();
 	}
 
 	public String getPlayerLastName(Integer id) {
-		Player playerEntity = playersDao.getPlayerById(id);
-		return playerMapper.getPlayerLastName(playerEntity);
+		PlayerProfileTO playerTO=playersDao.getPlayerToById(id);
+		return playerTO.getLastName();
 	}
 
 	public String getPlayerEmail(Integer id) {
-		Player playerEntity = playersDao.getPlayerById(id);
-		return playerMapper.getPlayerEmail(playerEntity);
+		PlayerProfileTO playerTO=playersDao.getPlayerToById(id);
+		return playerTO.getEmail();
 	}
 
 	public String getPlayerPassword(Integer id) {
-		Player playerEntity = playersDao.getPlayerById(id);
-		return playerMapper.getPlayerPassword(playerEntity);
+		PlayerProfileTO playerTO=playersDao.getPlayerToById(id);
+		return playerTO.getPassword();
 	}
 
 	public String getPlayerLifeMotto(Integer id) {
-		Player playerEntity = playersDao.getPlayerById(id);
-		return playerMapper.getPlayerMotto(playerEntity);
+		PlayerProfileTO playerTO=playersDao.getPlayerToById(id);
+		return playerTO.getLifeMotto();
 	}
 
 	public void setPlayerFirstName(Integer id, String firstName) {
-		Player playerEntity = playersDao.getPlayerById(id);
-		playerMapper.setPlayerFirstName(playerEntity, firstName);
+		playersDao.setPlayerFirstName(id, firstName);
 	}
 
 	public void setPlayerLastName(Integer id, String lastName) {
-		Player playerEntity = playersDao.getPlayerById(id);
-		playerMapper.setPlayerLastName(playerEntity, lastName);
+		playersDao.setPlayerLastName(id, lastName);
 	}
 
 	public void setPlayerEmail(Integer id, String email) {
-		Player playerEntity = playersDao.getPlayerById(id);
-		playerMapper.setPlayerEmail(playerEntity, email);
+		playersDao.setPlayerEmail(id, email);
 	}
 
 	public void setPlayerPassword(Integer id, String password) {
-		Player playerEntity = playersDao.getPlayerById(id);
-		playerMapper.setPlayerPassword(playerEntity, password);
+		playersDao.setPlayerPassword(id, password);
 	}
 
 	public void setPlayerLifeMotto(Integer id, String lifeMotto) {
-		Player playerEntity = playersDao.getPlayerById(id);
-		playerMapper.setPlayerLifeMotto(playerEntity, lifeMotto);
+		playersDao.setPlayerLifeMotto(id, lifeMotto);
 	}
 
 	public void initDao() {

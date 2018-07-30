@@ -5,18 +5,13 @@ import java.util.ArrayList;
 import org.springframework.stereotype.Component;
 
 import com.capgemini.capmates.Entities.GameLog;
-import com.capgemini.capmates.Enums.Result;
 import com.capgemini.capmates.TO.GameLogTO;
 
 @Component
 public class GameLogMapper {
 
 	public GameLogTO entityToTO(GameLog gameLog) {
-		long playerId=gameLog.getUserId();
-		long gameId=gameLog.getGameId();
-		Result result=gameLog.getResult();
-		GameLogTO gameLogTo=new GameLogTO(playerId, gameId, result);
-		return gameLogTo;
+		return new GameLogTO(gameLog.getUserId(), gameLog.getGameId(), gameLog.getResult());
 	}
 
 	public GameLog toToEntity(GameLogTO gameLogTo) {

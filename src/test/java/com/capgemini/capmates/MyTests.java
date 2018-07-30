@@ -1,6 +1,7 @@
 package com.capgemini.capmates;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -58,6 +59,19 @@ public class MyTests {
 
 		// then
 		assertEquals(EXPECTED_COLLECTION_SIZE, recentSize);
+	}
+
+	@Test
+	public void shouldShowAllPlayersProfiles() {
+		// given
+		playerService.initDao();
+		int EXPECTED_PLAYERS_NUMBER = 3;
+
+		// when
+		Collection<PlayerProfileTO> playersProfiles = playerService.showAllPlayersProfiles();
+
+		// then
+		assertEquals(EXPECTED_PLAYERS_NUMBER, playersProfiles.size());
 	}
 
 	@Test
@@ -133,6 +147,23 @@ public class MyTests {
 		assertEquals(EXPECTED_EMAIL, playerService.getPlayerEmail(playerId));
 		assertEquals(EXPECTED_PASSWORD, playerService.getPlayerPassword(playerId));
 		assertEquals(EXPECTED_LIFE_MOTTO, playerService.getPlayerLifeMotto(playerId));
+	}
+
+	@Test
+	public void shouldUpdatePlayerProfile() {
+		// given
+		playerService.initDao();
+		Integer playerProfileId = 1;
+		String EXPECTED_PLAYER_FIRST_NAME = "Bozydar";
+		String EXPECTED_PLAYER_LAST_NAME = "Wporzo";
+		PlayerProfileTO updatedProfile = new PlayerProfileTO(playerProfileId, EXPECTED_PLAYER_FIRST_NAME,
+				EXPECTED_PLAYER_LAST_NAME, "jan.kowalski@gmail.com", "admin1234", "amdg");
+
+		// when
+		playerService.editPlayerProfile(updatedProfile);
+
+		// then
+		assertEquals(EXPECTED_PLAYER_FIRST_NAME,playerService.getPlayerFirstName(playerProfileId));
 	}
 
 	@Test
@@ -390,7 +421,7 @@ public class MyTests {
 		int EXPECTED_PLAYER_NUMBER = 3;
 
 		// when
-		int playersNumber = playerStats.showPlayersId().size();
+		int playersNumber = playerStats.showActivePlayersId().size();
 
 		// then
 		assertEquals(EXPECTED_PLAYER_NUMBER, playersNumber);
@@ -402,14 +433,28 @@ public class MyTests {
 		playerStats.init();
 
 		int EXPECTED_PLAYER_GAMEPLAYS = 5;
-		long playerId=1;
+		long playerId = 1;
 
 		// when
-		int playerGameplays=playerStats.showPlayerHistory(playerId).size();
-//		int playerGameplays=playerStats.showAllGames(playerId).size();
+		int playerGameplays = playerStats.showPlayerHistory(playerId).size();
 
 		// then
 		assertEquals(EXPECTED_PLAYER_GAMEPLAYS, playerGameplays);
 	}
+
+	// @Test
+	// public void shouldReturnRanking() {
+	// // given
+	// playerStats.init();
+	//
+	// int EXPECTED_PLAYER_GAMEPLAYS = 5;
+	//
+	// // when
+	// TreeSet<RankPosition>ranking=new TreeSet<RankPosition>();
+	// ranking=playerStats.createRanking();
+	//
+	// // then
+	// assertEquals(EXPECTED_PLAYER_GAMEPLAYS, 5);
+	// }
 
 }

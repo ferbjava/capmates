@@ -8,6 +8,10 @@ public class PlayerProfileTO {
 	private String password;
 	private String lifeMotto;
 
+	public PlayerProfileTO(){
+		
+	}
+	
 	public PlayerProfileTO(Integer id, String firstName, String lastName, String email, String password,
 			String lifeMotto) {
 		setId(id);

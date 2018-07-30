@@ -18,6 +18,7 @@ public class GameLogDao {
 
 	public GameLogDao() {
 		gameLogList = new ArrayList<GameLog>();
+		gameLogMapper=new GameLogMapper();
 	}
 
 	public void init() {

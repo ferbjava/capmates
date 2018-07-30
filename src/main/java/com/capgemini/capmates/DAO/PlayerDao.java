@@ -8,13 +8,18 @@ import java.util.Map;
 import org.springframework.stereotype.Repository;
 import com.capgemini.capmates.Entities.Game;
 import com.capgemini.capmates.Entities.Player;
+import com.capgemini.capmates.Mappers.PlayerProfileMapper;
+import com.capgemini.capmates.TO.PlayerProfileTO;
 
 @Repository
 public class PlayerDao {
 	private Map<Integer, Player> players;
+	private PlayerProfileMapper profileMapper;
 
 	public PlayerDao() {
 		players = new HashMap<Integer, Player>();
+		this.profileMapper=new PlayerProfileMapper();
+		
 	}
 
 	public void init() {
@@ -30,9 +35,48 @@ public class PlayerDao {
 	public Collection<Player> getAllPlayers() {
 		return this.players.values();
 	}
+	
+	public ArrayList<PlayerProfileTO> getAllPlayersProfiles() {
+		ArrayList<PlayerProfileTO> playersProfilesTO=new ArrayList<>();
+		for(int i =1; i<=players.size();i++){
+			playersProfilesTO.add(profileMapper.entityToTO(players.get(i)));
+		}
+		return playersProfilesTO;
+	}
 
 	public Player getPlayerById(Integer id) {
 		return this.players.get(id);
+	}
+	
+	public PlayerProfileTO getPlayerToById(Integer id){
+		return profileMapper.entityToTO(this.players.get(id));
+	}
+
+	public void editPlayerProfile(PlayerProfileTO profileTO) {
+		int id=profileTO.getId();
+		ArrayList<Game>recentGames=players.get(id).getPlayerGames();
+		Player updatedPlayer=profileMapper.toToEntity(profileTO, recentGames);
+		players.put(id, updatedPlayer);
+	}
+
+	public void setPlayerFirstName(Integer id, String firstName) {
+		players.get(id).setFirstName(firstName);
+	}
+
+	public void setPlayerLastName(Integer id, String lastName) {
+		players.get(id).setLastName(lastName);
+	}
+
+	public void setPlayerEmail(Integer id, String email) {
+		players.get(id).setEmail(email);
+	}
+
+	public void setPlayerPassword(Integer id, String password) {
+		players.get(id).setPassword(password);
+	}
+
+	public void setPlayerLifeMotto(Integer id, String lifeMotto) {
+		players.get(id).setLifeMotto(lifeMotto);
 	}
 
 	public void addPlayerGame(Integer id, Game game) {

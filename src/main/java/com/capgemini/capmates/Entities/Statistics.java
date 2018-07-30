@@ -1,5 +1,7 @@
 package com.capgemini.capmates.Entities;
 
+import com.capgemini.capmates.Enums.PlayerRank;
+
 public class Statistics {
 
 	private long playerId;
@@ -7,14 +9,16 @@ public class Statistics {
 	private long lostGames;
 	private long drawGames;
 	private long placeRanking;
+	private PlayerRank playerRank;
 
-	public Statistics(long playerId, long winGames, long lostGames, long drawGames, long placeRanking) {
-		super();
-		this.playerId = playerId;
-		this.winGames = winGames;
-		this.lostGames = lostGames;
-		this.drawGames = drawGames;
-		this.placeRanking = placeRanking;
+	public Statistics(long playerId, long winGames, long lostGames, long drawGames, long placeRanking,
+			PlayerRank playerRank) {
+		setPlayerId(playerId);
+		setWinGames(winGames);
+		setLostGames(lostGames);
+		setDrawGames(drawGames);
+		setPlaceRanking(placeRanking);
+		setPlayerRank(playerRank);
 	}
 
 	public long getPlayerId() {
@@ -55,5 +59,13 @@ public class Statistics {
 
 	public void setPlaceRanking(long placeRanking) {
 		this.placeRanking = placeRanking;
+	}
+
+	public PlayerRank getPlayerRank() {
+		return playerRank;
+	}
+
+	public void setPlayerRank(PlayerRank playerRank) {
+		this.playerRank = playerRank;
 	}
 }
