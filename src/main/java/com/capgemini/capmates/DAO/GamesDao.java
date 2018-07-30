@@ -6,14 +6,18 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.stereotype.Repository;
 import com.capgemini.capmates.Entities.Game;
+import com.capgemini.capmates.Mappers.GamesMapper;
+import com.capgemini.capmates.TO.GameTO;
 
 @Repository
 public class GamesDao {
 	private Set<Game> availableGames;
+	private GamesMapper gamesMapper;
 	private AtomicLong gameId;
 
 	public GamesDao() {
 		availableGames = new HashSet<Game>();
+		gamesMapper = new GamesMapper();
 		gameId = new AtomicLong();
 	}
 
@@ -33,16 +37,17 @@ public class GamesDao {
 		return gamesInRepo;
 	}
 
-	public Game getOrAddGame(String gameName, int minPlayers, int maxPlayers) {
+	public GameTO getOrAddGame(GameTO gameTO) {
 		for (Game game : availableGames) {
-			if (game.getGameName().equals(gameName) && game.getMinPlayers() == minPlayers
-					&& game.getMaxPlayers() == maxPlayers) {
-				return game;
+			if (game.getGameName().equals(gameTO.getGameName()) && game.getMinPlayers() == gameTO.getMinPlayers()
+					&& game.getMaxPlayers() == gameTO.getMaxPlayers()) {
+				return gamesMapper.entityToTO(game);
 			}
 		}
-		Game newGame = new Game(gameId.getAndIncrement(), gameName, minPlayers, maxPlayers);
+		Game newGame = new Game(gameId.getAndIncrement(), gameTO.getGameName(), gameTO.getMinPlayers(),
+				gameTO.getMaxPlayers());
 		this.availableGames.add(newGame);
-		return newGame;
+		return gamesMapper.entityToTO(newGame);
 	}
 
 }

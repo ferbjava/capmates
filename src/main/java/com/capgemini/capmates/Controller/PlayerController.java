@@ -29,7 +29,6 @@ public class PlayerController {
 
 	@RequestMapping(value = "/profile/{id}", method = RequestMethod.GET)
 	public PlayerProfileTO showPlayerProfile(@PathVariable("id") int id) {
-		playerProfileService.initDao();
 		return playerProfileService.showPlayerProfile(id);
 	}
 

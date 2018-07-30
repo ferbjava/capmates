@@ -15,7 +15,6 @@ public class GameLogMapper {
 	}
 
 	public GameLog toToEntity(GameLogTO gameLogTo) {
-
 		return new GameLog(gameLogTo.getUserId(), gameLogTo.getGameId(), gameLogTo.getResult());
 	}
 

@@ -80,10 +80,4 @@ public class Game {
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		return "Game [id=" + id + ", gameName=" + gameName + ", minPlayers=" + minPlayers + ", maxPlayers=" + maxPlayers
-				+ "]";
-	}
-
 }

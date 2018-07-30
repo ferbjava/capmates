@@ -11,14 +11,12 @@ import com.capgemini.capmates.TO.GameTO;
 @Component
 public class GamesMapper {
 
-	public ArrayList<Game> showUserGames(Player playerEntity) {
-		ArrayList<Game> userGames = new ArrayList<>();
-		userGames.addAll(playerEntity.getPlayerGames());
-		return userGames;
+	public GameTO entityToTO(Game game) {
+		return new GameTO(game.getId(), game.getGameName(), game.getMinPlayers(), game.getMaxPlayers());
 	}
 
-	public GameTO entityToTO(Game game) {
-		return new GameTO(game.getGameName(), game.getMinPlayers(), game.getMaxPlayers());
+	public Game toToEntity(GameTO gameTO) {
+		return new Game(gameTO.getGameId(), gameTO.getGameName(), gameTO.getMinPlayers(), gameTO.getMaxPlayers());
 	}
 
 	public ArrayList<GameTO> entityToGameTOList(Player playerEntity) {

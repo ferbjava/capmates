@@ -166,6 +166,7 @@ public class MyTests {
 		assertEquals(EXPECTED_PLAYER_FIRST_NAME,playerService.getPlayerFirstName(playerProfileId));
 	}
 
+	//Player games tests
 	@Test
 	public void shouldReturnNullPlayerGames() {
 		// given
@@ -176,7 +177,7 @@ public class MyTests {
 		int EXPECTED_PLAYER_GAMES = 0;
 
 		// when
-		ArrayList<Game> playerGames = new ArrayList<>();
+		ArrayList<GameTO> playerGames = new ArrayList<>();
 		playerGames.addAll(gamesService.showPlayerGames(playerId));
 
 		// then
@@ -193,12 +194,12 @@ public class MyTests {
 		Integer playerId = 1;
 		int EXPECTED_PLAYER_GAMES = 1;
 		int EXPECTED_GAMES_IN_REPOSITORY = 5;
-		GameTO newGame = new GameTO("Monopoly", 2, 6);
-		gamesService.addGameToUserCollection(playerId, newGame);
+		GameTO newGame = new GameTO(0,"Monopoly", 2, 6);
 
 		// when
-		ArrayList<Game> playerGames = new ArrayList<Game>();
-		playerGames.addAll(gamesService.showPlayerGames(playerId));
+		gamesService.addGameToUserCollection(playerId, newGame);
+	
+		ArrayList<GameTO>playerGames=gamesService.showPlayerGames(playerId);
 
 		// then
 		assertEquals(EXPECTED_PLAYER_GAMES, playerGames.size());
@@ -215,11 +216,11 @@ public class MyTests {
 		Integer playerId = 1;
 		int EXPECTED_PLAYER_GAMES = 1;
 		int EXPECTED_GAMES_IN_REPOSITORY = 6;
-		GameTO newGame = new GameTO("Fasolki", 2, 6);
+		GameTO newGame = new GameTO(0,"Fasolki", 2, 6);
 		gamesService.addGameToUserCollection(playerId, newGame);
 
 		// when
-		ArrayList<Game> playerGames = new ArrayList<>();
+		ArrayList<GameTO> playerGames = new ArrayList<>();
 		playerGames.addAll(gamesService.showPlayerGames(playerId));
 
 		// then
@@ -237,15 +238,15 @@ public class MyTests {
 		Integer playerId = 1;
 		int EXPECTED_PLAYER_GAMES = 2;
 		int EXPECTED_GAMES_IN_REPOSITORY = 6;
-		GameTO newGame1 = new GameTO("Monopoly", 2, 6);
-		GameTO newGame2 = new GameTO("Fasolki", 2, 6);
-		GameTO newGame3 = new GameTO("Fasolki", 2, 6);
+		GameTO newGame1 = new GameTO(0,"Monopoly", 2, 6);
+		GameTO newGame2 = new GameTO(0,"Fasolki", 2, 6);
+		GameTO newGame3 = new GameTO(0,"Fasolki", 2, 6);
 		gamesService.addGameToUserCollection(playerId, newGame1);
 		gamesService.addGameToUserCollection(playerId, newGame2);
 		gamesService.addGameToUserCollection(playerId, newGame3);
 
 		// when
-		ArrayList<Game> playerGames = new ArrayList<>();
+		ArrayList<GameTO> playerGames = new ArrayList<>();
 		playerGames.addAll(gamesService.showPlayerGames(playerId));
 
 		// then
@@ -263,11 +264,11 @@ public class MyTests {
 		Integer playerId = 1;
 		int EXPECTED_PLAYER_GAMES = 1;
 		int EXPECTED_GAMES_IN_REPOSITORY = 6;
-		GameTO newGame1 = new GameTO("Monopoly", 2, 6);
-		GameTO newGame2 = new GameTO("Fasolki", 2, 6);
+		GameTO newGame1 = new GameTO(0,"Monopoly", 2, 6);
+		GameTO newGame2 = new GameTO(0,"Fasolki", 2, 6);
 		gamesService.addGameToUserCollection(playerId, newGame1);
 		gamesService.addGameToUserCollection(playerId, newGame2);
-		Game gameToRemove = new Game(5, "Fasolki", 2, 6);
+		GameTO gameToRemove = new GameTO(5, "Fasolki", 2, 6);
 
 		// when
 		gamesService.removePlayerGame(playerId, gameToRemove);
