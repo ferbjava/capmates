@@ -1,6 +1,8 @@
 package com.capgemini.capmates.Service;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 
@@ -33,6 +35,10 @@ public class PlayerProfileServiceImpl {
 		return playersDao.getAllPlayersProfiles();
 	}
 
+	public int showPlayersNumber() {
+		return showAllPlayersProfiles().size();
+	}
+
 	public PlayerProfileTO showPlayerProfile(Integer id) {
 		Player playerEntity = playersDao.getPlayerById(id);
 		return playerMapper.entityToTO(playerEntity);
@@ -42,6 +48,33 @@ public class PlayerProfileServiceImpl {
 		playersDao.editPlayerProfile(playerTO);
 	}
 
+	public List<PlayerProfileTO> showFilteredProfiles(PlayerProfileTO filter) {
+		List<PlayerProfileTO> filteredProfiles = new ArrayList<PlayerProfileTO>();
+		filteredProfiles = playersDao.getAllPlayersProfiles();
+		if (filter.getFirstName() != null) {
+			filteredProfiles = filteredProfiles.stream().filter(p -> p.getFirstName().equals(filter.getFirstName()))
+					.collect(Collectors.toList());
+		}
+		if (filter.getLastName() != null) {
+			filteredProfiles = filteredProfiles.stream().filter(p -> p.getLastName().equals(filter.getLastName()))
+					.collect(Collectors.toList());
+		}
+		if (filter.getEmail() != null) {
+			filteredProfiles = filteredProfiles.stream().filter(p -> p.getEmail().equals(filter.getEmail()))
+					.collect(Collectors.toList());
+		}
+		if (filter.getPassword() != null) {
+			filteredProfiles = filteredProfiles.stream().filter(p -> p.getPassword().equals(filter.getPassword()))
+					.collect(Collectors.toList());
+		}
+		if (filter.getLifeMotto() != null) {
+			filteredProfiles = filteredProfiles.stream().filter(p -> p.getLifeMotto().equals(filter.getLifeMotto()))
+					.collect(Collectors.toList());
+		}
+		return filteredProfiles;
+	}
+
+	
 	public String getPlayerFirstName(Integer id) {
 		PlayerProfileTO playerTO = playersDao.getPlayerToById(id);
 		return playerTO.getFirstName();

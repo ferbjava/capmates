@@ -31,9 +31,11 @@ public class GamesDao {
 		availableGames.add(new Game(gameId.getAndIncrement(), "Carcassone", 2, 6));
 	}
 
-	public HashSet<Game> showGamesInRepo() {
-		HashSet<Game> gamesInRepo = new HashSet<Game>();
-		gamesInRepo.addAll(availableGames);
+	public HashSet<GameTO> showGamesInRepo() {
+		HashSet<GameTO> gamesInRepo = new HashSet<GameTO>();
+		for(Game game:availableGames){
+			gamesInRepo.add(gamesMapper.entityToTO(game));
+		}
 		return gamesInRepo;
 	}
 

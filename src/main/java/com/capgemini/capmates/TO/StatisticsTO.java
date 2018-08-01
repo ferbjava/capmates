@@ -1,8 +1,8 @@
-package com.capgemini.capmates.Entities;
+package com.capgemini.capmates.TO;
 
 import com.capgemini.capmates.Enums.PlayerRank;
 
-public class Statistics {
+public class StatisticsTO {
 
 	private long playerId;
 	private long winGames;
@@ -11,7 +11,7 @@ public class Statistics {
 	private long placeRanking;
 	private PlayerRank playerRank;
 
-	public Statistics(long playerId, long winGames, long lostGames, long drawGames, long placeRanking,
+	public StatisticsTO(long playerId, long winGames, long lostGames, long drawGames, long placeRanking,
 			PlayerRank playerRank) {
 		setPlayerId(playerId);
 		setWinGames(winGames);

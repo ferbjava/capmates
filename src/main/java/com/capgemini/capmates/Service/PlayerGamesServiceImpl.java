@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.capgemini.capmates.DAO.GamesDao;
 import com.capgemini.capmates.DAO.PlayerDao;
-import com.capgemini.capmates.Entities.Game;
 import com.capgemini.capmates.Entities.Player;
 import com.capgemini.capmates.Mappers.GamesMapper;
 import com.capgemini.capmates.TO.GameTO;
@@ -32,7 +31,7 @@ public class PlayerGamesServiceImpl {
 
 	public ArrayList<GameTO> showPlayerGames(Integer playerId) {
 		Player playerEntity = playerDao.getPlayerById(playerId);
-		return gamesMapper.entityToGameTOList(playerEntity);
+		return gamesMapper.plEntityToGameTOList(playerEntity);
 	}
 
 	public void addGameToUserCollection(Integer playerId, GameTO newGameTO) {
@@ -40,8 +39,8 @@ public class PlayerGamesServiceImpl {
 		playerDao.addPlayerGame(playerId, recentGame);
 	}
 
-	public HashSet<Game> showGamesInRepo() {
-		HashSet<Game> gamesInRepo = new HashSet<>();
+	public HashSet<GameTO> showGamesInRepo() {
+		HashSet<GameTO> gamesInRepo = new HashSet<GameTO>();
 		gamesInRepo.addAll(gamesDao.showGamesInRepo());
 		return gamesInRepo;
 	}

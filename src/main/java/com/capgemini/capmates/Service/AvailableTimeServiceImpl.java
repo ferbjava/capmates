@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.capgemini.capmates.DAO.AvailTimesDao;
-import com.capgemini.capmates.Entities.Challenge;
 import com.capgemini.capmates.Mappers.AvailTimesMapper;
 import com.capgemini.capmates.TO.AvailTimeTO;
+import com.capgemini.capmates.TO.ChallengeTO;
 
 @Service
 public class AvailableTimeServiceImpl {
@@ -44,9 +44,9 @@ public class AvailableTimeServiceImpl {
 		return availTimesDao.removeAvailTime(playerId, timeToRemove);
 	}
 
-	public ArrayList<Challenge> createChallenges(int playerId, long minPeriod) {
+	public ArrayList<ChallengeTO> createChallenges(int playerId, long minPeriod) {
 
-		ArrayList<Challenge> challengeList = new ArrayList<Challenge>();
+		ArrayList<ChallengeTO> challengeList = new ArrayList<ChallengeTO>();
 		ArrayList<AvailTimeTO> timeList = new ArrayList<AvailTimeTO>();
 		timeList.addAll(availTimesDao.showAllTimes());
 
@@ -58,10 +58,10 @@ public class AvailableTimeServiceImpl {
 		return challengeList;
 	}
 
-	private ArrayList<Challenge> createChallengesForSelectedTime(AvailTimeTO playerTime,
+	private ArrayList<ChallengeTO> createChallengesForSelectedTime(AvailTimeTO playerTime,
 			ArrayList<AvailTimeTO> allTimes, long minPeriod) {
 
-		ArrayList<Challenge> challengeList = new ArrayList<Challenge>();
+		ArrayList<ChallengeTO> challengeList = new ArrayList<ChallengeTO>();
 		int playerId = playerTime.getPlayerId();
 
 		for (AvailTimeTO tempTime : allTimes) {
@@ -69,7 +69,7 @@ public class AvailableTimeServiceImpl {
 			if (!(playerId == enemyId)) {
 				ArrayList<LocalTime> commonPeriod = createCommonPeriod(playerTime, tempTime, minPeriod);
 				if (commonPeriod.size() != 0) {
-					challengeList.add(new Challenge(playerId, enemyId, commonPeriod.get(0), commonPeriod.get(1)));
+					challengeList.add(new ChallengeTO(playerId, enemyId, commonPeriod.get(0), commonPeriod.get(1)));
 				}
 			}
 		}

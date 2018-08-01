@@ -70,4 +70,10 @@ public class PlayerProfileTO {
 		this.password = password;
 	}
 
+	@Override
+	public String toString() {
+		return "PlayerProfileTO [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
+				+ ", password=" + password + ", lifeMotto=" + lifeMotto + "]";
+	}
+	
 }

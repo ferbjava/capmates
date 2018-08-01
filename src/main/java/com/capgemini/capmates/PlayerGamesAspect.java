@@ -14,19 +14,19 @@ public class PlayerGamesAspect {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(PlayerGamesAspect.class);
 
-	@Before("execution(* com.capgemini.capmates.Service.PlayerGamesServiceImpl.addGameToUserCollection(..))")
-	public void beforeAddingGame() {
-		LOGGER.info("New game is added");
-	}
-
-	@Around("execution(* com.capgemini.capmates.DAO.*.*(..))")
-	public Object profile(ProceedingJoinPoint pjp) throws Throwable {
-		long start = System.currentTimeMillis();
-		LOGGER.info("Method from any repository will be started");
-		Object output = pjp.proceed();
-		LOGGER.info("Method finished.");
-		long elapsedTime = System.currentTimeMillis() - start;
-		LOGGER.info("Method executed in: " + elapsedTime + "milliseconds.");
-		return output;
-	}
+//	@Before("execution(* com.capgemini.capmates.Service.PlayerGamesServiceImpl.addGameToUserCollection(..))")
+//	public void beforeAddingGame() {
+//		LOGGER.info("New game is added");
+//	}
+//
+//	@Around("execution(* com.capgemini.capmates.DAO.*.*(..))")
+//	public Object profile(ProceedingJoinPoint pjp) throws Throwable {
+//		long start = System.currentTimeMillis();
+//		LOGGER.info("Method from any repository will be started");
+//		Object output = pjp.proceed();
+//		LOGGER.info("Method finished.");
+//		long elapsedTime = System.currentTimeMillis() - start;
+//		LOGGER.info("Method executed in: " + elapsedTime + "milliseconds.");
+//		return output;
+//	}
 }

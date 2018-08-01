@@ -1,14 +1,14 @@
-package com.capgemini.capmates.Entities;
+package com.capgemini.capmates.TO;
 
 import java.time.LocalTime;
 
-public class Challenge {
+public class ChallengeTO {
 	private int firstPlayerId;
 	private int secondPlayerId;
 	private LocalTime startChallenge;
 	private LocalTime stopChallenge;
 
-	public Challenge(int firstPlayerId, int secondPlayerId, LocalTime startChallenge, LocalTime stopChallenge) {
+	public ChallengeTO(int firstPlayerId, int secondPlayerId, LocalTime startChallenge, LocalTime stopChallenge) {
 		setFirstPlayerId(firstPlayerId);
 		setSecondPlayerId(secondPlayerId);
 		setStartChallenge(startChallenge);

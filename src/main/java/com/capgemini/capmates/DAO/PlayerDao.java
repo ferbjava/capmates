@@ -28,11 +28,13 @@ public class PlayerDao {
 
 	public void init() {
 		players.clear();
-		players.put(1,
-				new Player(1, "Jan", "Kowalski", "jan.kowalski@gmail.com", "admin1234", "amdg", new ArrayList<Game>()));
+		players.put(1, new Player(1, "Jan", "Kowalski", "jan.kowalski@gmail.com", "admin1234", "amdg",
+				new ArrayList<Game>()));
 		players.put(2, new Player(2, "Andrzej", "Nowak", "andrzej.nowak@gmail.com", "andrzejKing", "Pantha rei",
 				new ArrayList<Game>()));
 		players.put(3, new Player(3, "Anna", "Wisniewska", "anna.wisniewska@gmail.com", "Qwerty", "yolo",
+				new ArrayList<Game>()));
+		players.put(4, new Player(4, "Jan", "Psikuta", "jan.psikuta@gmail.com", "admin1234", "ktz",
 				new ArrayList<Game>()));
 	}
 

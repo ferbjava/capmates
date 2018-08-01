@@ -19,11 +19,12 @@ public class GamesMapper {
 		return new Game(gameTO.getGameId(), gameTO.getGameName(), gameTO.getMinPlayers(), gameTO.getMaxPlayers());
 	}
 
-	public ArrayList<GameTO> entityToGameTOList(Player playerEntity) {
+	public ArrayList<GameTO> plEntityToGameTOList(Player playerEntity) {
 		ArrayList<GameTO> gameTOlist = new ArrayList<GameTO>();
 		for (Game game : playerEntity.getPlayerGames()) {
 			gameTOlist.add(entityToTO(game));
 		}
 		return gameTOlist;
 	}
+	
 }
