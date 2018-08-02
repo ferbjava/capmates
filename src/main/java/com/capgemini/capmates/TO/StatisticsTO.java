@@ -1,6 +1,6 @@
 package com.capgemini.capmates.TO;
 
-import com.capgemini.capmates.Enums.PlayerRank;
+import com.capgemini.capmates.Enums.Level;
 
 public class StatisticsTO {
 
@@ -9,16 +9,19 @@ public class StatisticsTO {
 	private long lostGames;
 	private long drawGames;
 	private long placeRanking;
-	private PlayerRank playerRank;
+	private Level playerLevel;
+
+	public StatisticsTO() {
+	}
 
 	public StatisticsTO(long playerId, long winGames, long lostGames, long drawGames, long placeRanking,
-			PlayerRank playerRank) {
+			Level playerLevel) {
 		setPlayerId(playerId);
 		setWinGames(winGames);
 		setLostGames(lostGames);
 		setDrawGames(drawGames);
 		setPlaceRanking(placeRanking);
-		setPlayerRank(playerRank);
+		setPlayerLevel(playerLevel);
 	}
 
 	public long getPlayerId() {
@@ -61,11 +64,11 @@ public class StatisticsTO {
 		this.placeRanking = placeRanking;
 	}
 
-	public PlayerRank getPlayerRank() {
-		return playerRank;
+	public Level getPlayerLevel() {
+		return playerLevel;
 	}
 
-	public void setPlayerRank(PlayerRank playerRank) {
-		this.playerRank = playerRank;
+	public void setPlayerLevel(Level playerLevel) {
+		this.playerLevel = playerLevel;
 	}
 }

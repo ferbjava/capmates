@@ -8,10 +8,6 @@ public class PlayerProfileTO {
 	private String password;
 	private String lifeMotto;
 
-	public PlayerProfileTO() {
-
-	}
-
 	public PlayerProfileTO(Integer id, String firstName, String lastName, String email, String password,
 			String lifeMotto) {
 		setId(id);
@@ -68,12 +64,6 @@ public class PlayerProfileTO {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	@Override
-	public String toString() {
-		return "PlayerProfileTO [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", password=" + password + ", lifeMotto=" + lifeMotto + "]";
 	}
 	
 }

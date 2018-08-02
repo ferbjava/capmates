@@ -1,4 +1,4 @@
-package com.capgemini.capmates;
+package com.capgemini.capmates.StreamTest;
 
 import java.util.ArrayList;
 import java.util.List;

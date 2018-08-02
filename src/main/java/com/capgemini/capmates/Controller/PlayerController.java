@@ -33,7 +33,7 @@ public class PlayerController {
 		if(id>=0&&id<=playerProfileService.showPlayersNumber()){
 			return playerProfileService.showPlayerProfile(id);
 		}else{
-			throw new ProfileExceptions("Moj komunikat"+id);
+			throw new ProfileExceptions("My message: "+id);
 //			throw new IllegalArgumentException("Your profile id: "+id);
 		}
 //		return playerProfileService.showPlayerProfile(id);

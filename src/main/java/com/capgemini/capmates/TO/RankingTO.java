@@ -2,11 +2,11 @@ package com.capgemini.capmates.TO;
 
 import java.util.Comparator;
 
-public class RankPositionTO{// implements Comparable<RankPositionTO> {
+public class RankingTO{
 	private Long points;
 	private long playerId;
 
-	public RankPositionTO(long points, long playerId) {
+	public RankingTO(long points, long playerId) {
 		setPoints(points);
 		setPlayerId(playerId);
 	}
@@ -27,18 +27,13 @@ public class RankPositionTO{// implements Comparable<RankPositionTO> {
 		this.playerId = playerId;
 	}
 	
-	public static class PointsComparator implements Comparator<RankPositionTO>{
+	public static class PointsComparator implements Comparator<RankingTO>{
 		@Override
-		public int compare(RankPositionTO r1, RankPositionTO r2) {
+		public int compare(RankingTO r1, RankingTO r2) {
 			Long r1Points=-r1.getPoints();
-			return r1Points.compareTo(-r2.getPoints());
+			Long r2Points=-r2.getPoints();
+			return r1Points.compareTo(r2Points);
 		}
 	}
-
-//	@Override
-//	public int compareTo(RankPositionTO o) {
-//		// TODO Auto-generated method stub
-//		return 0;
-//	}
 
 }

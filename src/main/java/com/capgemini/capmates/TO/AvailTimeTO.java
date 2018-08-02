@@ -103,10 +103,4 @@ public class AvailTimeTO {
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		return "AvailTimeTO [playerId=" + playerId + ", start=" + start + ", stop=" + stop + ", status=" + status
-				+ ", comment=" + comment + "]";
-	}
-
 }
