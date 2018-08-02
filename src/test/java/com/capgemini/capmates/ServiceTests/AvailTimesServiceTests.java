@@ -19,7 +19,7 @@ import com.capgemini.capmates.TO.ChallengeTO;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class AvailTimesServiceTests {
-	
+
 	@Autowired
 	private AvailableTimeServiceImpl availTimesService;
 
@@ -29,7 +29,7 @@ public class AvailTimesServiceTests {
 		availTimesService.init();
 
 		Integer playerId = 1;
-		int EXPECTED_PLAYER_TIMES = 2;
+		final int EXPECTED_PLAYER_TIMES = 2;
 
 		// when
 		ArrayList<AvailTimeTO> playerTime = availTimesService.showPlayerTimes(playerId);
@@ -45,8 +45,8 @@ public class AvailTimesServiceTests {
 		availTimesService.init();
 
 		Integer playerId = 3;
-		int EXPECTED_OLD_PLAYER_TIMES = 2;
-		int EXPECTED_NEW_PLAYER_TIMES = 3;
+		final int EXPECTED_OLD_PLAYER_TIMES = 2;
+		final int EXPECTED_NEW_PLAYER_TIMES = 3;
 		AvailTimeTO newTime = new AvailTimeTO(playerId, LocalTime.of(14, 00), LocalTime.of(16, 00), "Active", "");
 
 		// when
@@ -68,11 +68,11 @@ public class AvailTimesServiceTests {
 		availTimesService.init();
 
 		Integer playerId = 1;
-		int EXPECTED_OLD_PLAYER_TIMES = 2;
-		int EXPECTED_NEW_PLAYER_TIMES = 2;
-		LocalTime NEW_START = LocalTime.of(9, 00);
-		LocalTime NEW_STOP = LocalTime.of(11, 00);
-		int UPDATED_TIME_ID = 1;
+		final int EXPECTED_OLD_PLAYER_TIMES = 2;
+		final int EXPECTED_NEW_PLAYER_TIMES = 2;
+		final LocalTime NEW_START = LocalTime.of(9, 00);
+		final LocalTime NEW_STOP = LocalTime.of(11, 00);
+		final int UPDATED_TIME_ID = 1;
 
 		// when
 		AvailTimeTO updatedTime = new AvailTimeTO(playerId, NEW_START, NEW_STOP, "Active", "");
@@ -98,9 +98,9 @@ public class AvailTimesServiceTests {
 		availTimesService.init();
 
 		Integer playerId = 1;
-		int EXPECTED_OLD_PLAYER_TIMES = 2;
-		int EXPECTED_NEW_PLAYER_TIMES = 2;
-		String EXPECTED_STATUS = "I have to be in work";
+		final int EXPECTED_OLD_PLAYER_TIMES = 2;
+		final int EXPECTED_NEW_PLAYER_TIMES = 2;
+		final String EXPECTED_STATUS = "I have to be in work";
 		LocalTime startToRemove = LocalTime.of(16, 00);
 		LocalTime stopToRemove = LocalTime.of(18, 00);
 
@@ -112,7 +112,6 @@ public class AvailTimesServiceTests {
 
 		boolean isRemoved = false;
 		isRemoved = availTimesService.removeAvailTime(playerId, timeToRemove);
-		;
 		playerTime = availTimesService.showPlayerTimes(playerId);
 
 		int newPlayerTimes = playerTime.size();
@@ -130,8 +129,8 @@ public class AvailTimesServiceTests {
 		availTimesService.init();
 
 		Integer PLAYER_ID = 2;
-		int MINIMUM_PERIOD = 60;
-		int EXPECTED_CHALLENGES = 3;
+		final int MINIMUM_PERIOD = 60;
+		final int EXPECTED_CHALLENGES = 3;
 
 		// when
 		ArrayList<ChallengeTO> createdChallenges = new ArrayList<ChallengeTO>();
@@ -147,8 +146,8 @@ public class AvailTimesServiceTests {
 		availTimesService.init();
 
 		Integer PLAYER_ID = 2;
-		int MINIMUM_PERIOD = 30;
-		int EXPECTED_CHALLENGES = 4;
+		final int MINIMUM_PERIOD = 30;
+		final int EXPECTED_CHALLENGES = 4;
 
 		// when
 		ArrayList<ChallengeTO> createdChallenges = new ArrayList<ChallengeTO>();

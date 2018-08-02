@@ -51,30 +51,14 @@ public class PlayerProfileServiceImpl {
 	public List<PlayerProfileTO> showFilteredProfiles(PlayerProfileTO filter) {
 		List<PlayerProfileTO> filteredProfiles = new ArrayList<PlayerProfileTO>();
 		filteredProfiles = playersDao.getAllPlayersProfiles();
-		if (filter.getFirstName() != null) {
-			filteredProfiles = filteredProfiles.stream().filter(p -> p.getFirstName().equals(filter.getFirstName()))
-					.collect(Collectors.toList());
-		}
-		if (filter.getLastName() != null) {
-			filteredProfiles = filteredProfiles.stream().filter(p -> p.getLastName().equals(filter.getLastName()))
-					.collect(Collectors.toList());
-		}
-		if (filter.getEmail() != null) {
-			filteredProfiles = filteredProfiles.stream().filter(p -> p.getEmail().equals(filter.getEmail()))
-					.collect(Collectors.toList());
-		}
-		if (filter.getPassword() != null) {
-			filteredProfiles = filteredProfiles.stream().filter(p -> p.getPassword().equals(filter.getPassword()))
-					.collect(Collectors.toList());
-		}
-		if (filter.getLifeMotto() != null) {
-			filteredProfiles = filteredProfiles.stream().filter(p -> p.getLifeMotto().equals(filter.getLifeMotto()))
-					.collect(Collectors.toList());
-		}
+		filteredProfiles = filterByFirstName(filteredProfiles, filter.getFirstName());
+		filteredProfiles = filterByLastName(filteredProfiles, filter.getLastName());
+		filteredProfiles = filterByEmail(filteredProfiles, filter.getEmail());
+		filteredProfiles = filterByPassword(filteredProfiles, filter.getPassword());
+		filteredProfiles = filterByLifeMotto(filteredProfiles, filter.getLifeMotto());
 		return filteredProfiles;
 	}
 
-	
 	public String getPlayerFirstName(Integer id) {
 		PlayerProfileTO playerTO = playersDao.getPlayerToById(id);
 		return playerTO.getFirstName();
@@ -118,6 +102,62 @@ public class PlayerProfileServiceImpl {
 
 	public void setPlayerLifeMotto(Integer id, String lifeMotto) {
 		playersDao.setPlayerLifeMotto(id, lifeMotto);
+	}
+
+	// private methods
+
+	private List<PlayerProfileTO> filterByFirstName(List<PlayerProfileTO> profiles, String firstName) {
+		List<PlayerProfileTO> filteredProfiles = new ArrayList<>();
+		if (firstName != null && firstName != "") {
+			filteredProfiles = profiles.stream().filter(p -> p.getFirstName().equals(firstName))
+					.collect(Collectors.toList());
+			return filteredProfiles;
+		} else {
+			return profiles;
+		}
+	}
+
+	private List<PlayerProfileTO> filterByLastName(List<PlayerProfileTO> profiles, String lastName) {
+		List<PlayerProfileTO> filteredProfiles = new ArrayList<>();
+		if (lastName != null && lastName != "") {
+			filteredProfiles = profiles.stream().filter(p -> p.getLastName().equals(lastName))
+					.collect(Collectors.toList());
+			return filteredProfiles;
+		} else {
+			return profiles;
+		}
+	}
+
+	private List<PlayerProfileTO> filterByEmail(List<PlayerProfileTO> profiles, String email) {
+		List<PlayerProfileTO> filteredProfiles = new ArrayList<>();
+		if (email != null && email != "") {
+			filteredProfiles = profiles.stream().filter(p -> p.getEmail().equals(email)).collect(Collectors.toList());
+			return filteredProfiles;
+		} else {
+			return profiles;
+		}
+	}
+
+	private List<PlayerProfileTO> filterByPassword(List<PlayerProfileTO> profiles, String password) {
+		List<PlayerProfileTO> filteredProfiles = new ArrayList<>();
+		if (password != null && password != "") {
+			filteredProfiles = profiles.stream().filter(p -> p.getPassword().equals(password))
+					.collect(Collectors.toList());
+			return filteredProfiles;
+		} else {
+			return profiles;
+		}
+	}
+
+	private List<PlayerProfileTO> filterByLifeMotto(List<PlayerProfileTO> profiles, String lifeMotto) {
+		List<PlayerProfileTO> filteredProfiles = new ArrayList<>();
+		if (lifeMotto != null && lifeMotto != "") {
+			filteredProfiles = profiles.stream().filter(p -> p.getLifeMotto().equals(lifeMotto))
+					.collect(Collectors.toList());
+			return filteredProfiles;
+		} else {
+			return profiles;
+		}
 	}
 
 }

@@ -24,7 +24,7 @@ public class PlayerStatsServiceTests {
 		// given
 		playerStats.init();
 
-		int EXPECTED_PLAYER_NUMBER = 3;
+		final int EXPECTED_PLAYER_NUMBER = 3;
 
 		// when
 		int playersNumber = playerStats.showActivePlayersId().size();
@@ -39,7 +39,7 @@ public class PlayerStatsServiceTests {
 		// given
 		playerStats.init();
 
-		int EXPECTED_PLAYER_GAMEPLAYS = 5;
+		final int EXPECTED_PLAYER_GAMEPLAYS = 5;
 		long playerId = 1;
 
 		// when
@@ -57,9 +57,9 @@ public class PlayerStatsServiceTests {
 		 Long player2=2L;
 		 Long player3=3L;
 		 
-		 int EXPECTED_POSITION_PLAYER_1=3;
-		 int EXPECTED_POSITION_PLAYER_2=2;
-		 int EXPECTED_POSITION_PLAYER_3=1;
+		 final int EXPECTED_POSITION_PLAYER_1=3;
+		 final int EXPECTED_POSITION_PLAYER_2=2;
+		 final int EXPECTED_POSITION_PLAYER_3=1;
 	
 		 // when
 	 
@@ -79,11 +79,11 @@ public class PlayerStatsServiceTests {
 		 playerStats.init();
 		 Long playerId=1L;
 		 
-		 Long EXPECTED_PLAYER_WINS=1L;
-		 Long EXPECTED_PLAYER_DRAWS=0L;
-		 Long EXPECTED_PLAYER_LOSTS=4L;
-		 Long EXPECTED_PLAYER_RANKING_POS=3L;
-		 Level EXPECTED_PLAYER_LEVEL=Level.NEWBIE;
+		 final Long EXPECTED_PLAYER_WINS=1L;
+		 final Long EXPECTED_PLAYER_DRAWS=0L;
+		 final Long EXPECTED_PLAYER_LOSTS=4L;
+		 final Long EXPECTED_PLAYER_RANKING_POS=3L;
+		 final Level EXPECTED_PLAYER_LEVEL=Level.NEWBIE;
 	
 		 // when
 		 StatisticsTO firstPlayerStats=playerStats.showPlayerStats(playerId);

@@ -3,6 +3,7 @@ package com.capgemini.capmates.ServiceTests;
 import static org.junit.Assert.assertEquals;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -41,7 +42,7 @@ public class PlayerProfileServiceTests {
 	public void shouldShowNumberOfPlayer() {
 		// given
 		playerService.initDao();
-		Integer EXPECTED_PLAYERS = 4;
+		final Integer EXPECTED_PLAYERS = 4;
 
 		// when
 		Integer playersNo = playerService.showPlayersNumber();
@@ -54,7 +55,7 @@ public class PlayerProfileServiceTests {
 	public void shouldShowAllPlayersProfiles() {
 		// given
 		playerService.initDao();
-		int EXPECTED_PLAYERS_NUMBER = 4;
+		final int EXPECTED_PLAYERS_NUMBER = 4;
 
 		// when
 		Collection<PlayerProfileTO> playersProfiles = playerService.showAllPlayersProfiles();
@@ -68,11 +69,11 @@ public class PlayerProfileServiceTests {
 		// given
 		playerService.initDao();
 		Integer playerId = 2;
-		String EXPECTED_FIRST_NAME = "Andrzej";
-		String EXPECTED_LAST_NAME = "Nowak";
-		String EXPECTED_MAIL = "andrzej.nowak@gmail.com";
-		String EXPECTED_PASSWORD = "andrzejKing";
-		String EXPECTED_LIFE_MOTTO = "Pantha rei";
+		final String EXPECTED_FIRST_NAME = "Andrzej";
+		final String EXPECTED_LAST_NAME = "Nowak";
+		final String EXPECTED_MAIL = "andrzej.nowak@gmail.com";
+		final String EXPECTED_PASSWORD = "andrzejKing";
+		final String EXPECTED_LIFE_MOTTO = "Pantha rei";
 
 		// when
 		PlayerProfileTO playerProfile = playerService.showPlayerProfile(playerId);
@@ -90,11 +91,11 @@ public class PlayerProfileServiceTests {
 		// given
 		playerService.initDao();
 		int playerId = 1;
-		String EXPECTED_FIRST_NAME = "Jan";
-		String EXPECTED_LAST_NAME = "Kowalski";
-		String EXPECTED_MAIL = "jan.kowalski@gmail.com";
-		String EXPECTED_PASSWORD = "admin1234";
-		String EXPECTED_LIFE_MOTTO = "amdg";
+		final String EXPECTED_FIRST_NAME = "Jan";
+		final String EXPECTED_LAST_NAME = "Kowalski";
+		final String EXPECTED_MAIL = "jan.kowalski@gmail.com";
+		final String EXPECTED_PASSWORD = "admin1234";
+		final String EXPECTED_LIFE_MOTTO = "amdg";
 
 		// when
 
@@ -110,11 +111,11 @@ public class PlayerProfileServiceTests {
 	public void shouldSetPlayerProfileElements() {
 		// given
 		playerService.initDao();
-		String EXPECTED_FIRST_NAME = "Bozydar";
-		String EXPECTED_LAST_NAME = "Brzeczeszczykiewicz";
-		String EXPECTED_EMAIL = "bozo.wpozo@wp.pl";
-		String EXPECTED_PASSWORD = "imieUkochanej";
-		String EXPECTED_LIFE_MOTTO = "ACAB";
+		final String EXPECTED_FIRST_NAME = "Bozydar";
+		final String EXPECTED_LAST_NAME = "Brzeczeszczykiewicz";
+		final String EXPECTED_EMAIL = "bozo.wpozo@wp.pl";
+		final String EXPECTED_PASSWORD = "imieUkochanej";
+		final String EXPECTED_LIFE_MOTTO = "ACAB";
 
 		Integer playerId = 1;
 		String newFirstName = "Bozydar";
@@ -143,8 +144,8 @@ public class PlayerProfileServiceTests {
 		// given
 		playerService.initDao();
 		Integer playerProfileId = 1;
-		String EXPECTED_PLAYER_FIRST_NAME = "Bozydar";
-		String EXPECTED_PLAYER_LAST_NAME = "Wporzo";
+		final String EXPECTED_PLAYER_FIRST_NAME = "Bozydar";
+		final String EXPECTED_PLAYER_LAST_NAME = "Wporzo";
 		PlayerProfileTO updatedProfile = new PlayerProfileTO(playerProfileId, EXPECTED_PLAYER_FIRST_NAME,
 				EXPECTED_PLAYER_LAST_NAME, "jan.kowalski@gmail.com", "admin1234", "amdg");
 
@@ -152,7 +153,23 @@ public class PlayerProfileServiceTests {
 		playerService.editPlayerProfile(updatedProfile);
 
 		// then
-		assertEquals(EXPECTED_PLAYER_FIRST_NAME,playerService.getPlayerFirstName(playerProfileId));
+		assertEquals(EXPECTED_PLAYER_FIRST_NAME, playerService.getPlayerFirstName(playerProfileId));
 	}
-	
+
+	@Test
+	public void shouldReturn2FilteredProfiles() {
+		// given
+		playerService.initDao();
+		final int EXPECTED_FILTERED_PROFILES = 2;
+		final String EXPECTED_PLAYER_FIRST_NAME = "Jan";
+		PlayerProfileTO filter = new PlayerProfileTO(null, EXPECTED_PLAYER_FIRST_NAME, "", null, null, null);
+
+		// when
+		List<PlayerProfileTO> filteredProfiles = playerService.showFilteredProfiles(filter);
+
+		// then
+		assertEquals(EXPECTED_PLAYER_FIRST_NAME, filteredProfiles.get(0).getFirstName());
+		assertEquals(EXPECTED_FILTERED_PROFILES, filteredProfiles.size());
+	}
+
 }

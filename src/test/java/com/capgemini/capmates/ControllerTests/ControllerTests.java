@@ -40,7 +40,7 @@ public class ControllerTests {
 	}
 
 	@Test
-	public void shouldReturnException() throws Exception {
+	public void shouldReturnAdvice() throws Exception {
 
 		// given
 		String EXPECTED_RESPONSE = "Invalid Id: 6, invalid request: /profile/6";
