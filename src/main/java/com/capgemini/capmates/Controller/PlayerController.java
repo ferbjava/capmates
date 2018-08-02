@@ -29,21 +29,20 @@ public class PlayerController {
 	}
 
 	@RequestMapping(value = "/profile/{id}", method = RequestMethod.GET)
-	public PlayerProfileTO showPlayerProfile(@PathVariable("id") int id) {
-		if(id>=0&&id<=playerProfileService.showPlayersNumber()){
+	public PlayerProfileTO showPlayerProfile(@PathVariable("id") int id) throws ProfileExceptions {
+		if (id >= 0 && id <= playerProfileService.showPlayersNumber()) {
 			return playerProfileService.showPlayerProfile(id);
-		}else{
-			throw new ProfileExceptions("My message: "+id);
-//			throw new IllegalArgumentException("Your profile id: "+id);
+		} else {
+			throw new ProfileExceptions("Invalid Id: " + id);
 		}
-//		return playerProfileService.showPlayerProfile(id);
 	}
 
 	@RequestMapping(value = "profile/edit", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public void editPlayerProfile(@RequestBody PlayerProfileTO udpatedProfile) {
-		playerProfileService.editPlayerProfile(udpatedProfile);
+	public void editPlayerProfile(@RequestBody PlayerProfileTO updatedProfile) {
+		System.out.println("Player Id: " + updatedProfile.getId());
+		playerProfileService.editPlayerProfile(updatedProfile);
 	}
-	
+
 	@RequestMapping(value = "profile/filter", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public List<PlayerProfileTO> filterPlayersProfiles(@RequestBody PlayerProfileTO filter) {
 		List<PlayerProfileTO> filteredProfiles = new ArrayList<PlayerProfileTO>();

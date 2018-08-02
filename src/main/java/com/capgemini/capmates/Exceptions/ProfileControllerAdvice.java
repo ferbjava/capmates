@@ -12,7 +12,7 @@ public class ProfileControllerAdvice extends ResponseEntityExceptionHandler {
 	
 	@ExceptionHandler(ProfileExceptions.class)
 	public ResponseEntity<Object> handleIllegalArgumentExceptions(ProfileExceptions ex, HttpServletRequest request){
-		return ResponseEntity.badRequest().body("Invalid index: "+ex.getMessage()+" "+request.getRequestURI());
+		return ResponseEntity.badRequest().body(ex.getMessage()+", invalid request: "+request.getRequestURI());
 	}
 	
 }

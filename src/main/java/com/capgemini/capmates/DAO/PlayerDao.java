@@ -1,7 +1,6 @@
 package com.capgemini.capmates.DAO;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,10 +35,6 @@ public class PlayerDao {
 				new ArrayList<Game>()));
 		players.put(4, new Player(4, "Jan", "Psikuta", "jan.psikuta@gmail.com", "admin1234", "ktz",
 				new ArrayList<Game>()));
-	}
-
-	public Collection<Player> getAllPlayers() {
-		return this.players.values();
 	}
 
 	public ArrayList<PlayerProfileTO> getAllPlayersProfiles() {

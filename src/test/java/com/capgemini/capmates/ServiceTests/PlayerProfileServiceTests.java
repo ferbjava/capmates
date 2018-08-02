@@ -38,6 +38,19 @@ public class PlayerProfileServiceTests {
 	}
 
 	@Test
+	public void shouldShowNumberOfPlayer() {
+		// given
+		playerService.initDao();
+		Integer EXPECTED_PLAYERS = 4;
+
+		// when
+		Integer playersNo = playerService.showPlayersNumber();
+
+		// then
+		assertEquals(EXPECTED_PLAYERS, playersNo);
+	}
+
+	@Test
 	public void shouldShowAllPlayersProfiles() {
 		// given
 		playerService.initDao();
